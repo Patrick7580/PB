@@ -1,0 +1,398 @@
+<div class="loader" *ngIf="isloading">
+  <mat-progress-spinner diameter=50 mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<ng-container *ngIf="!isloading">
+  <div class="row">
+    <!-- <mat-card class="col-3 col-m-12"> -->
+    <div class="card cards overflow-hidden col-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h6 class="font">{{ 'Total Panchayat' | translate }}</h6>
+            <h3 class="mb-2 number-font">32</h3>
+
+          </div>
+          <div class="col col-auto">
+            <div class="counter-icon box-shadow-primary brround ms-auto">
+
+              <img class="cardimg" src="./assets/images/Total_Panchayat_icon.svg" width="50" height="52">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </mat-card> -->
+    <!-- <mat-card class="col-3 col-m-12"> -->
+    <div class="card cards overflow-hidden col-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h6 class="font">{{ 'Total Users' | translate }}</h6>
+            <h3 class="mb-2 number-font">121</h3>
+
+          </div>
+          <div class="col col-auto">
+            <div class="counter-icon box-shadow-primary brround ms-auto">
+              <img src="./assets/images/User-icon.svg" width="50" height="52">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </mat-card> -->
+    <!-- <mat-card class="col-3 col-m-12"> -->
+    <div class="card cards overflow-hidden col-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h6 class="font">{{ 'Total Events' | translate }}</h6>
+            <h3 class="mb-2 number-font">51</h3>
+
+          </div>
+          <div class="col col-auto">
+            <div class="counter-icon box-shadow-primary brround ms-auto">
+              <img src="./assets/images/Event-Icon.svg" width="50" height="52">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </mat-card> -->
+    <!-- <mat-card class="col-3 col-m-12"> -->
+    <div class="card cards overflow-hidden col-3">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h6 class="font">
+              {{ 'Total Complaints' | translate }}
+            </h6>
+            <h3 class="mb-2 number-font">308</h3>
+
+          </div>
+          <div class="col col-auto">
+            <div class="counter-icon box-shadow-primary brround ms-auto">
+              <img class="" src="./assets/images/Complaints-Icon.svg" width="50" height="52">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </mat-card> -->
+
+  </div>
+
+
+  <div class="row">
+    <div class="card graphBar overflow-hidden col-9">
+      <div class="row title">
+        <div class="col-12 col-sm-6 maintitle">
+          <span class="page-heading">{{ 'Total Complaints' | translate }}</span>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="card-body">
+        <div>
+          <div style="display: block">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [legend]="lineChartLegend"
+              [type]="lineChartType">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card graphBars col-3">
+      <div class="row title">
+        <div class="col-12 col-sm-6 maintitle">
+          <span class="page-heading">{{ 'Events' | translate }}</span>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="card-body">
+        <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!"
+          [plotOptions]="chartOptions.plotOptions!" [labels]="chartOptions.labels!" [fill]="chartOptions.fill!"
+          [stroke]="chartOptions.stroke!"></apx-chart>
+
+        <div class="row">
+
+          <div class="col-12 d-flex justify-content-center">
+            <div class="row">
+              <h6 class="col-12 Eventfonts d-flex justify-content-center">
+                <span class="legend bg-background3"></span>
+                {{ 'Completed Events' | translate }}
+              </h6>
+              <h3 class="col-12 number-font d-flex justify-content-center">{{ CompletedEvents }}</h3>
+            </div>
+          </div>
+          <div class="col-6">
+            <h6 class="Eventfonts">
+              <span class="legend bg-background1"></span>
+              {{ 'Total Events' | translate }}
+            </h6>
+            <h3 class="mb-2 number-font d-flex justify-content-center ">{{ TotalEvents }}</h3>
+          </div>
+          <div class="col-6">
+            <h6 class="Eventfonts">
+              <span class="legend bg-background2"></span>
+              {{ 'Draft Events' | translate }}
+            </h6>
+            <h3 class="mb-2 number-font d-flex justify-content-center ">{{ DraftEvents }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------------------------------------------Recent Complaints--------------------------------------------- -->
+  <div class="row">
+    <div class="card tablecard overflow-hidden col-6">
+      <div class="row title">
+        <div class="col-12 col-sm-6 maintitle">
+          <span class="page-heading flex-grow-1">{{ 'Recent Complaints' | translate }}</span>
+          <div class="flex-shrink-0"><span class="sortby">Sort By :</span>
+            <mat-form-field>
+            <mat-select [formControl]="Data" (selectionChange)="onChange(Data.value)">
+              <mat-option *ngFor="let date of dates" [value]="date.value">
+                {{date.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field></div>
+        </div>
+ 
+      </div>
+      <mat-divider></mat-divider>
+      <div class="card-body">
+
+        <div class="row">
+
+          <section class="col-12" style="float: right;  margin-bottom: 10px;">
+            <mat-form-field class="col-12 searchrecords" appearance="outline" style="margin-top: 10px;"
+              *ngIf="showRecentSearch">
+              <input matInput (keyup)="fireFilterEventRecent($event)" placeholder="Search Records">
+            </mat-form-field>
+            <button type="button" class="btn showfilter" *ngIf="!showRecentSearch" (click)="openRecentSearch()">
+              <mat-icon style="margin-top: 4px;">search</mat-icon>
+            </button>
+          </section>
+
+          <div class="example-container mat-elevation-z8 " *ngIf="RecentDataSource && RecentDataSource.data.length > 0">
+            <mat-table #table [dataSource]="RecentDataSource" matSort #sorter1="matSort">
+              <!-- FirstName Column -->
+              <ng-container matColumnDef="Title">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'TITLE' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="ComplaintUserId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'COMPLAIN_USER' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.ComplaintUserId}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="CreatedDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'CREATED_DATE' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.CreatedDate | date:'dd/MM/yyyy'}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="AssignUserId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'ASSIGN_TO' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.AssignUserId}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="StatusId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'STATUS' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.StatusId}} </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumnRecent"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumnRecent;"></mat-row>
+            </mat-table>
+            <mat-paginator #MatPaginator1="matPaginator" [length]="RecentDataSource.data.length" [pageSize]="5"
+              [pageSizeOptions]="[2, 5, 10, 20]" [pageIndex]="pageIndex" hidePageSize showFirstLastButtons
+              (page)="onPaginateChange($event)" dir="ltr">
+            </mat-paginator>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="center" *ngIf=" RecentDataSource && RecentDataSource.data.length == 0">
+            <mat-icon class="center-icon">cloud_queue</mat-icon>
+            <span class="center-text">NO DATA FOUND</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- -------------------------------------------------Resolved Complaints-------------------------------------------------------- -->
+    <div class="card tablecard overflow-hidden col-6">
+      <div class="row title">
+        <div class="col-12 col-sm-6 maintitle">
+          <span class="page-heading">{{ 'Resolved Complaints' | translate }}</span>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="card-body">
+        <div class="container-flud">
+
+          <div class="row">
+
+            <section class="col-12" style="float: right;  margin-bottom: 10px;">
+              <mat-form-field class="col-12 searchrecords" appearance="outline" style="margin-top: 10px;"
+                *ngIf="showResolvedSearch">
+                <input matInput (keyup)="fireFilterEventResolved($event)" placeholder="Search Records">
+              </mat-form-field>
+              <button type="button" class="btn showfilter" *ngIf="!showResolvedSearch" (click)="openResolvedSearch()">
+                <mat-icon style="margin-top: 4px;">search</mat-icon>
+              </button>
+            </section>
+
+            <div class="example-container mat-elevation-z8 "
+              *ngIf="ResolvedDataSource && ResolvedDataSource.data.length > 0">
+              <mat-table #table [dataSource]="ResolvedDataSource" matSort #sorter2="matSort">
+                <!-- FirstName Column -->
+                <ng-container matColumnDef="Title">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'TITLE' | translate }} </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.Title}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ComplaintUserId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'COMPLAIN_USER' | translate }}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.ComplaintUserId}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="CreatedDate">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'CREATED_DATE' | translate }}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.CreatedDate | date:'dd/MM/yyyy'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="AssignUserId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'ASSIGN_TO' | translate }} </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.AssignUserId}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="StatusId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'STATUS' | translate }} </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.StatusId}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumnsResolved"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumnsResolved;"></mat-row>
+              </mat-table>
+              <mat-paginator #MatPaginator2="matPaginator" [length]="ResolvedDataSource.data.length" [pageSize]="5"
+                [pageSizeOptions]="[2, 5, 10, 20]" [pageIndex]="pageIndex" hidePageSize showFirstLastButtons
+                (page)="onPaginateChange($event)" dir="ltr">
+              </mat-paginator>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="center" *ngIf=" ResolvedDataSource && ResolvedDataSource.data.length == 0">
+              <mat-icon class="center-icon">cloud_queue</mat-icon>
+              <span class="center-text">NO DATA FOUND</span>
+            </div>
+          </div>
+          <!-- </mat-card> -->
+        </div>
+        <!-- </mat-card> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="card donutCard overflow-hidden col-3">
+      <div class="row title">
+        <!-- <div class="col-12 col-sm-6 maintitle"> -->
+        <span class="page-headings">{{ 'No. Of Active Users Ward Wise' | translate }}</span>
+        <!-- </div> -->
+      </div>
+      <mat-divider></mat-divider>
+      <div class="card-body">
+        <div style="display: block">
+          <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType">
+          </canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ----------------------------------------User-List----------------------------------------- -->
+
+    <div class="card bottomCard overflow-hidden col-9">
+      <div class="row title">
+        <div class="col-12 col-sm-6 maintitle">
+          <span class="page-heading">{{ 'User List' | translate }}</span>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="card-body">
+
+        <div class="row">
+
+          <section class="col-12" style="float: right;  margin-bottom: 10px;">
+            <mat-form-field class="col-12 searchrecords" appearance="outline" style="margin-top: 10px;"
+              *ngIf="showSearch">
+              <input matInput (keyup)="fireFilterEvent($event)" placeholder="Search Records">
+            </mat-form-field>
+            <button type="button" class="btn showfilter" *ngIf="!showSearch" (click)="openSearch()">
+              <mat-icon style="margin-top: 4px;">search</mat-icon>
+            </button>
+          </section>
+
+          <div class="example-container mat-elevation-z8 " *ngIf="dataSource && dataSource.data.length > 0">
+            <mat-table #table [dataSource]="dataSource" matSort #sorter3="matSort">
+              <!-- FirstName Column -->
+              <ng-container matColumnDef="ProfileImage">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'PROFILE_IMAGE' | translate }} </mat-header-cell>
+                <!-- <mat-cell *matCellDef="let element"> <img [src]="element.ProfileImage" /></mat-cell> -->
+                <mat-cell *matCellDef="let element"> {{element.ProfileImage}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="FirstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'NAME' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.FirstName}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Phone">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'PHONE' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Phone}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="RoleId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'ROLE' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.RoleId}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="PanchayatId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'PANCHAYAT' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.PanchayatId}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="WardId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'WARD' | translate }} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.WardId}} </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumnsUser"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumnsUser;"></mat-row>
+            </mat-table>
+            <mat-paginator #MatPaginator3="matPaginator" [length]="dataSource.data.length" [pageSize]="10"
+              [pageSizeOptions]="[2, 5, 10, 20]" [pageIndex]="pageIndex" hidePageSize showFirstLastButtons
+              (page)="onPaginateChange($event)" dir="ltr">
+            </mat-paginator>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="center" *ngIf="dataSource && dataSource.data.length == 0">
+            <mat-icon class="center-icon">cloud_queue</mat-icon>
+            <span class="center-text">NO DATA FOUND</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

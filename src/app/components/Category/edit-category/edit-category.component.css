@@ -1,0 +1,97 @@
+
+.title{
+  background-color: #0F3963;
+  height: 50px;
+  /* margin-top: 15px; */
+}
+
+
+.maintitle{
+  justify-content: center;
+  margin-top: 9px;
+}
+
+.mat-header-cell{
+  background-color: #0F3963;
+  color: white;
+  font-weight: 400;
+}
+
+.page-heading{
+  text-align: center;
+  margin-left: 10px;
+  font-weight: 400;
+  font-family: Times, Times New Roman, serif;
+  font-size: large;
+   /* color: white; */
+   color: rgb(255, 255, 255);
+}
+
+mat-select{
+  margin-left: 30px;
+  margin-top: 15px;
+  width: 50%;
+}
+
+mat-label{
+  font-size: medium;
+}
+
+.mat-tooltip {
+  font-size: medium;
+}
+
+.search .mat-label {
+  margin-bottom: 50px;
+}
+
+.mat-form-field .mat-select{
+   /* margin-left: 30px !important; */
+   margin-left: 0px !important;
+}
+
+.mat-form-field .mat-label{
+  text-align: center;
+  margin-top: 80px !important;
+}
+
+/* -------------------form css------------------ */
+
+.example-form {
+  min-width: 150px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  left: 14px;
+
+}
+
+.example-button-width{
+  /* margin-left: 790px; */
+  left: 0;
+  bottom: 0;
+  float: right;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+
+}
+
+.submitform{
+  float: right;
+}
+
+.form{
+  margin-top:50px ;
+  margin-left: 50px;
+}
+
+.categorycard{
+  margin-top: 40px;
+}
+

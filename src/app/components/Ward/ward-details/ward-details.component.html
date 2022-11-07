@@ -1,0 +1,53 @@
+<div class="container-flud">
+  <mat-card class="main-card">
+    <div class="row title">
+      <div class="col-12 col-sm-6 maintitle">
+        <mat-icon style="color: rgb(250, 139, 75); cursor: pointer;" (click)="reloadPage()" matTooltip="Reload"
+          matTooltipPosition="below">refresh</mat-icon>
+        <span class="page-heading">/ {{ Name }}</span>
+        <!-- <span class="page-heading">/ {{ USER DETAILS }}</span> -->
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-4 col-sm-3 col-lg-12">
+        <label class="page-sub-title-main mb-3">Ward Details :</label>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="col-4 col-sm-3 col-lg-2 mt-3">
+        <label class="page-sub-title mb-3"> {{'NAME' | translate }} :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4 mt-3">
+        <span class="title-data">{{ Name }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2 mt-3">
+        <label class="page-sub-title mb-3">{{ 'PANCHAYAT' | translate }} :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4 mt-3">
+        <span class="title-data">{{ Panchayat }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3"> {{ 'BLOCK' | translate }} :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ Block }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3">{{ 'DISTRICT' | translate }} :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ District }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3">{{ 'STATE' | translate }} :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ State }}</span>
+      </div>
+      <div class="col-12">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+

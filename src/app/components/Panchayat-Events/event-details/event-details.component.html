@@ -1,0 +1,147 @@
+<div class="container-flud">
+  <mat-card class="main-card">
+    <div class="row title">
+      <div class="col-12 col-sm-6 maintitle">
+        <mat-icon style="color: rgb(250, 139, 75); cursor: pointer;" (click)="reloadPage()" matTooltip="Reload"
+          matTooltipPosition="below">refresh</mat-icon>
+        <span class="page-heading">/ {{ Title }}</span>
+        <!-- <span class="page-heading">/ {{ USER DETAILS }}</span> -->
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-4 col-sm-3 col-lg-12">
+        <label class="page-sub-title-main mb-3">Event Details :</label>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="col-4 col-sm-3 col-lg-2 mt-3">
+        <label class="page-sub-title mb-3">Title :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4 mt-3">
+        <span class="title-data">{{ Title }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2 mt-3">
+        <label class="page-sub-title mb-3">Description :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4 mt-3">
+        <span class="title-data"> {{ Description }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3"> Banner Image :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ BannerImageName }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3">Start Date :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ startdDate | date:'dd/MM/yyyy'}} </span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3">End Date :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ endDate | date:'dd/MM/yyyy'}}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3">Panchayat :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ Panchayat }}</span>
+      </div>
+      <div class="col-4 col-sm-3 col-lg-2">
+        <label class="page-sub-title mb-3">Publish :</label>
+      </div>
+      <div class="col-8 col-sm-9 col-lg-4">
+        <span class="title-data">{{ publish }}</span>
+      </div>
+      <div class="col-12">
+        <mat-divider></mat-divider>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<div class="container-fluid mt-4" style="box-shadow: 0 5px 5px rgba(57, 63, 72, 0.3);">
+  <mat-card class="main-card">
+    <div class="row title">
+      <div class="col-12 col-sm-6 maintitle">
+        <mat-icon style="color: rgb(250, 139, 75); cursor: pointer;" routerLink="/complaint-list" matTooltip="Reload"
+          matTooltipPosition="below">style</mat-icon>
+        <span class="page-heading">USER LIST</span>
+      </div>
+    </div>
+    <div class="row">
+      <section class="col-12" style="float: right;">
+        <mat-form-field class="col-12 searchrecords" appearance="outline" style="margin-top: 10px;" *ngIf="showSearch">
+          <input matInput (keyup)="fireFilterEvent($event)" placeholder="Search Records">
+        </mat-form-field>
+        <button type="button" class="btn showfilter" *ngIf="!showSearch" (click)="openSearch()">
+          <mat-icon style="margin-top: 4px;">search</mat-icon>
+        </button>
+      </section>
+
+      <div class="col-12 hide-mob" *ngIf="dataSource && dataSource.data.length > 0">
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- FirstName Column -->
+            <ng-container matColumnDef="FirstName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> First Name. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.FirstName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="LastName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.LastName}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Phone">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.Phone}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="RoleTypeName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.RoleTypeName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="PanchayatName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Panchayat </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.PanchayatName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="WardName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Ward </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.WardName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element"> <button mat-icon-button (click)=select.open()>
+                  <mat-icon>create</mat-icon>
+                  <mat-select #select class="langSelect">
+                    <mat-option routerLink="/user-details">View</mat-option>
+                    <mat-option routerLink="">Edit</mat-option>
+                    <mat-option routerLink="">Delete</mat-option>
+                  </mat-select>
+                </button> </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageIndex]="10" hidePageSize
+            showFirstLastButtons (page)="onPaginateChange($event)" dir="ltr">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="center" *ngIf=" dataSource && dataSource.data.length == 0">
+        <mat-icon class="center-icon">cloud_queue</mat-icon>
+        <span class="center-text">NO DATA FOUND</span>
+      </div>
+    </div>
+  </mat-card>
+</div>

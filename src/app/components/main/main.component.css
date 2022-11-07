@@ -1,0 +1,173 @@
+/* ----------------------Header------------------------------------ */
+
+mat-toolbar-row {
+  box-shadow: 0 5px 5px rgba(57, 63, 72, 0.3);
+  z-index: 2;
+  background-color: rgb(255, 255, 255);
+  /* background-color: #0F3963 */
+}
+
+/* ----------------------SideNav------------------------------- */
+
+/* .example-container {
+  position: absolute;
+  top: 60px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+} */
+
+.high {
+  background-color: #0F3963;
+  color: aliceblue;
+}
+
+.high mat-panel-title {
+  color: white;
+}
+
+.high mat-icon {
+  color: orange;
+}
+
+.example-container {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f5f7ff;
+}
+
+.sidelist a {
+  font-family: "nanito", sans-serif;
+  text-align: center;
+  width: 100%;
+}
+
+mat-sidenav mat-nav-list {
+  width: 260px;
+  height: 100%;
+}
+
+mat-form-field {
+  margin-left: 20px;
+  font-size: 15px;
+}
+
+mat-sidenav {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+  background-color: rgb(255, 255, 255);
+  border-radius: 5%;
+  /* margin-left: 5px; */
+}
+
+::ng-deep .mat-select-arrow {
+  opacity: 0;
+  margin-top: 20px !important;
+}
+
+.topnav {
+  box-shadow: 0px -4px 3px rgba(57, 63, 72, 0.3);
+  z-index: 1;
+}
+
+h4 {
+  /* padding-left: 50px; */
+  cursor: pointer;
+  text-align: center;
+}
+
+mat-accordion mat-panel-title :hover {
+  background-color: #0F3963;
+  color: white;
+  border-radius: 2px;
+}
+
+/* .highlight{
+  background-color: #0F3963;
+  color: white;
+} */
+
+mat-accordion :hover mat-icon {
+  color: orange;
+}
+
+.subItems h4 {
+  padding-left: 10px;
+}
+
+mat-expansion-panel {
+  height: 100%;
+}
+
+.titleList{
+  cursor: pointer;
+}
+/* --------------------Footer---------------------------- */
+
+.example-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-weight: 400 !important;
+  font-size: 15px;
+  background-color: white;
+  z-index: 3;
+  box-shadow: 0 -4px 5px rgba(57, 63, 72, 0.3);
+  height: 30px;
+}
+
+.mat-icon {
+  margin-right: 25px;
+  color: #0f3963;
+}
+
+@media (min-width: 992px) {
+  .hide-mob {
+    display: block;
+  }
+}
+
+@media (max-width: 991px) {
+  .hide-mob {
+    display: block;
+  }
+
+  mat-sidenav mat-nav-list {
+    width: 260px;
+    height: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  mat-sidenav mat-nav-list {
+    width: 190px;
+    height: 100%;
+  }
+
+  .hide-mob {
+    display: none;
+  }
+}
+
+.example-icon {
+  padding: 0 12px;
+  justify-content: center;
+  margin-top: 0px;
+  width: 90px !important;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.headerButton {
+  margin-top: 0px;
+}
+
+.sideNavLabel {
+  font-weight: 300;
+  color: rgb(0, 0, 0);
+}

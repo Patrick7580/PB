@@ -1,0 +1,131 @@
+<ng-container style="box-shadow: 0 5px 5px rgba(57, 63, 72, 0.3);">
+  <mat-card class="main-card">
+    <div class="row title">
+      <div class="col-12 col-sm-6 maintitle">
+        <mat-icon style="color: rgb(250, 139, 75); cursor: pointer;" routerLink="/add-block" matTooltip="Reload"
+        matTooltipPosition="below">event_available</mat-icon>
+      <span class="page-heading">{{ 'Add Event' | translate }}</span>
+      </div>
+    </div>
+    <ng-container>
+    <div class="row" style="margin-top: 35px;">
+      <form class="example-form" [formGroup]="addEventForm" (ngSubmit)="saveEvent(addEventForm.value)" >
+        <div class="row">
+          <section class="col-12" class="justify-center" style=" margin-bottom:40px;" *ngIf="!imageSrc">
+            <img src="./assets/images/EveUpload.png" width="50%" height="100%" style="margin-left: 280px;">
+          </section>
+
+          <section class="col-12" class="justify-center" style=" margin-bottom:40px;" *ngIf="imageSrc">
+            <img [src]="imageSrc" alt='Item image' *ngIf="imageSrc" width="50%" height="100%"
+              style="margin-left: 280px;">
+          </section>
+
+           <div class="col-2 formTitle">Title :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input matInput formControlName="Title">
+            </mat-form-field>
+          </div>
+
+          <div class="col-2 formTitle">Description :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input matInput formControlName="Description">
+            </mat-form-field>
+          </div>
+
+          <div class="col-2 formTitle">Start Date :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input matInput type="text" [matDatepicker]="picker1" formControlName="StartDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-2 formTitle">End Date :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input matInput type="text" [matDatepicker]="picker2" formControlName="EndDate" [min]="addEventForm.value.StartDate">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-2 formTitle">State :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-select formControlName="StateId" (selectionChange)="onStateChange($event.value)">
+                <mat-option>--select State--</mat-option>
+                <mat-option *ngFor="let states of states" [value]="states.StateId">
+                    {{ states.Name }}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-2 formTitle">District :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-select formControlName="DistrictId" (selectionChange)="onDistrictChange($event.value)">
+                <mat-option>--select District--</mat-option>
+                <mat-option *ngFor="let district of districts" [value]="district.DistrictId">
+                    {{ district.Name }}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-2 formTitle">Block :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-select formControlName="BlockId" (selectionChange)="onBlockChange($event.value)" required>
+                <mat-option>--Select Block--</mat-option>
+                <mat-option *ngFor="let block of blocks" [value]="block.BlockId">
+                    {{ block.Name }}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-2 formTitle">Panchayat :</div>
+          <div class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-select formControlName="PanchayatId">
+                <mat-option *ngFor="let panchayat of panchayats" [value]="panchayat.PanchayatId">
+                  {{ panchayat.Name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-2 formTitle">Publish :</div>
+          <div class="col-4">
+              <mat-checkbox color="primary" checked="checkValue" formControlName="Publish" (onChange)="onChecked($event)"> 
+              </mat-checkbox>
+          </div>
+
+          <div class="col-2 formTitle">Add Event Image :</div>
+          <section class="col-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <ngx-mat-file-input #photo formControlName="BannerImageName" placeholder="Add Event Image"
+                (change)="onAddImage($event)">
+                <mat-icon>create</mat-icon>
+              </ngx-mat-file-input>
+              <button mat-icon-button matSuffix *ngIf="!photo.empty" (click)="photo.clear($event); onRemoveImage()">
+                <mat-icon matSuffix>clear</mat-icon>
+              </button>
+            </mat-form-field>
+          </section>
+
+          <div class="col-12">
+            <div class="example-button-width">
+              <button mat-raised-button type="button" style="background-color:#fa8b4b;" (click)="reloadPage()">Cancel</button>
+              <button mat-raised-button color="primary" style="margin-left: 10px;" type="submit">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    </ng-container>
+  </mat-card>
+</ng-container>

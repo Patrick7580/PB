@@ -1,0 +1,67 @@
+<div class="container-flud">
+  <mat-card class="main-card">
+    <div class="row title">
+      <div class="col-12 col-sm-6 maintitle">
+        <mat-icon style="color: rgb(250, 139, 75); cursor: pointer;" routerLink="/user-list" matTooltip="Reload"
+          matTooltipPosition="below">streetview</mat-icon>
+        <span class="page-heading">{{ 'Sub-Category List' | translate }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <section class="col-12" style="float: right;">
+        <mat-form-field class="col-12 searchrecords" appearance="outline" style="margin-top: 10px;"  *ngIf="showSearch">
+          <input matInput (keyup)="fireFilterEvent($event)" placeholder="Search Records">
+        </mat-form-field>
+        <button type="button" class="btn showfilter" *ngIf="!showSearch"
+          (click)="openSearch()"><mat-icon style="margin-top: 4px;">search</mat-icon></button>
+      </section>
+      
+      <div class="col-12 hide-mob" *ngIf="dataSource && dataSource.data.length > 0">
+
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="En_Name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>  {{'NAME' | translate }} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.En_Name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="CategoryId">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>   {{ 'CATEGORY' | translate }} </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <ng-container *ngIf="element.TblCategory != null">{{element.TblCategory.En_Name}}</ng-container>  </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> {{ 'ACTION' | translate }} </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)=select.open()>
+                  <mat-icon>create</mat-icon>
+                  <mat-select #select class="langSelect">
+                    <mat-option [routerLink]="['sub-category-details',element.SubCategoryId]">View</mat-option>
+                    <mat-option [routerLink]="['edit-sub-category', element.SubCategoryId]">Edit</mat-option>
+                    <mat-option routerLink="">Delete</mat-option>
+                  </mat-select>
+                </button>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator #paginator [length]="dataSource.data.length" [pageSize]="5" [pageSizeOptions]="[2, 5, 10, 20]" [pageIndex]="pageIndex"
+            hidePageSize showFirstLastButtons (page)="onPaginateChange($event)" dir="ltr">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="center" *ngIf="dataSource && dataSource.data.length == 0">
+        <mat-icon class="center-icon">cloud_queue</mat-icon>
+        <span class="center-text">NO DATA FOUND</span>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<router-outlet></router-outlet>

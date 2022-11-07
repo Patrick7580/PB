@@ -1,0 +1,55 @@
+<ng-container style="box-shadow: 0 5px 5px rgba(57, 63, 72, 0.3);">
+  <mat-card class="main-card">
+  <div class="row title">
+    <div class="col-12 col-sm-6 maintitle">
+      <mat-icon style="color: rgb(250, 139, 75); cursor: pointer;" routerLink="/add-district" matTooltip="Reload"
+        matTooltipPosition="below">markunread_mailbox</mat-icon>
+      <span class="page-heading">{{ 'Add District' | translate }}</span>
+    </div>
+  </div>
+  <ng-container>
+    <div class="row" style="margin-top: 55px;">
+      <!-- <mat-card class="districtCard"> -->
+        <form class="example-form row" [formGroup]="addDistrict" (ngSubmit)="saveDistrict(addDistrict.value)">
+
+          <div class="col-2 formTitle">Name ( In English ):</div>
+          <section class="col-10">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <!-- <mat-label>{{ 'NAME' | translate }} (In English)</mat-label> -->
+              <input matInput formControlName="Name">
+            </mat-form-field>
+          </section>
+
+          <div class="col-2 formTitle">Name ( In Hindi ):</div>
+          <section class="col-10">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <!-- <mat-label> {{ 'NAME' | translate }} (In Hindi)</mat-label> -->
+              <input matInput formControlName="Hi_Name">
+            </mat-form-field>
+          </section>
+
+          <div class="col-2 formTitle">State:</div>
+          <section class="col-10">
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label> Select State</mat-label>
+              <mat-select formControlName="StateId">
+                <!-- <mat-select [formControl]="StateData"> -->
+                <mat-option *ngFor="let state of states" [value]="state.StateId">
+                  {{ state.Name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+          <section class="col-12">
+            <div class="example-button-width">
+              <button mat-raised-button type="button" style="background-color:#fa8b4b;" (click)="reloadPage()">Cancel</button>
+              <button mat-raised-button type="submit" color="primary" style="margin-left: 10px;"
+                >Save</button>
+            </div>
+          </section>
+        </form>
+      <!-- </mat-card> -->
+    </div>
+  </ng-container>
+  </mat-card>
+</ng-container>

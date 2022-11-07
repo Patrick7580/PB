@@ -1,0 +1,14 @@
+<!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+<div class="login-page">
+  <div class="form">
+    <img src="assets/images/Panchayat-bhavan.png" alt="" class="mb-4">
+    <form class="login-form" [formGroup]="formData" (ngSubmit)="onClickSubmit()">
+     <input type="text" id="email" class="form-control" formControlName="email" placeholder="email"
+                required autofocus>
+      <input type="password" id="inputPassword" class="form-control" formControlName="password"
+                placeholder="Password" required>
+      <button  class="btn btn-lg btn-primary btn-block" type="submit"> SIGN IN</button>
+      <p class="message" style="display: flex;"><a href="#">Forget Password ?</a></p>
+    </form>
+  </div>
+</div>

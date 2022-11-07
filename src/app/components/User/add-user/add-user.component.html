@@ -1,0 +1,164 @@
+<ng-container style="box-shadow: 0 5px 5px rgba(57, 63, 72, 0.3);">
+  <mat-card class="main-card">
+    <div class="row title">
+      <div class="col-12 col-sm-6 maintitle">
+        <mat-icon style="color: rgb(250, 139, 75); cursor: pointer;" routerLink="/add-user" matTooltip="Reload"
+          matTooltipPosition="below">person_add</mat-icon>
+        <span class="page-heading">{{ 'Add User' | translate }}</span>
+      </div>
+    </div>
+    <ng-container>
+      <div class="row" style="margin-top: 35px;">
+        <form class="example-form" [formGroup]="addUserForm" (ngSubmit)="saveUser(addUserForm.value)">
+          <div class="row">
+            <div class="col-12" class="from_body" style="margin-bottom:40px;" *ngIf="!imageSrc">
+              <img src="./assets/images/avatar.png" width="20%" height="100%" style="border-radius: 50%;">
+            </div>
+
+            <div class="col-12" class="from_body" style=" margin-bottom:40px;" *ngIf="imageSrc">
+              <img [src]="imageSrc" alt='Item image' *ngIf="imageSrc" width="20%" height="100%"
+                style="border-radius: 50%;" formControlName="photo">
+            </div>
+
+            <div class="col-2 formTitle">First Name :</div>
+            <div class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <input matInput formControlName="FirstName">
+                <mat-error *ngIf="f['FirstName'].errors && f['FirstName'].errors['required']">
+                  <strong>First Name is required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-2 formTitle">Last Name :</div>
+            <div class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <input matInput formControlName="LastName">
+                <mat-error *ngIf="f['LastName'].errors && f['LastName'].errors['required']">
+                  <strong>Last Name is required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-2 formTitle">Phone :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <input matInput formControlName="Phone">
+                <mat-error *ngIf="f['Phone'].errors && f['Phone'].errors['required']">
+                  <strong>Phone is required</strong>
+                </mat-error>
+              </mat-form-field>
+            </section>
+
+            <div class="col-2 formTitle">Role :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-select formControlName="RoleId">
+                  <mat-option *ngFor="let role of roles" [value]="role.RoleId">
+                    {{ role.Name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['RoleId'].errors && f['RoleId'].errors['required']">
+                  <strong>Role is required</strong>
+                </mat-error>
+              </mat-form-field>
+            </section>
+
+            <div class="col-2 formTitle">State :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-select formControlName="StateId" (selectionChange)="onStateChange($event.value)">
+                  <mat-option *ngFor="let state of states" [value]="state.StateId">
+                    {{ state.Name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['StateId'].errors && f['StateId'].errors['required']">
+                  <strong>State is required</strong> 
+                  </mat-error>
+              </mat-form-field>
+            </section>
+
+            <div class="col-2 formTitle">District :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-select formControlName="DistrictId" (selectionChange)="onDistrictChange($event.value)">
+                  <mat-option *ngFor="let district of districts" [value]="district.DistrictId">
+                    {{ district.Name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['DistrictId'].errors && f['DistrictId'].errors['required']">
+                  <strong>District is required</strong> 
+                  </mat-error>
+              </mat-form-field>
+            </section>
+
+
+            <div class="col-2 formTitle">Block :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-select formControlName="BlockId" (selectionChange)="onBlockChange($event.value)">
+                  <mat-option *ngFor="let block of blocks" [value]="block.BlockId">
+                    {{ block.Name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['BlockId'].errors && f['BlockId'].errors['required']">
+                  <strong>Block is required</strong> 
+                  </mat-error>
+              </mat-form-field>
+            </section>
+
+            <div class="col-2 formTitle">Panchayat :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <!-- <mat-label>{{ 'SELECT_PANCHAYAT' | translate }}</mat-label> -->
+                <mat-select formControlName="PanchayatId" (selectionChange)="onPanchayatChange($event.value)">
+                  <mat-option *ngFor="let panchayat of panchayats" [value]="panchayat.PanchayatId">
+                    {{ panchayat.Name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['PanchayatId'].errors && f['PanchayatId'].errors['required']">
+                  <strong>Panchayat is required</strong> 
+                  </mat-error>
+              </mat-form-field>
+            </section>
+
+            <div class="col-2 formTitle">Ward :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <!-- <mat-label>{{ 'SELECT_WARD' | translate }}</mat-label> -->
+                <mat-select formControlName="WardId">
+                  <mat-option *ngFor="let ward of wards" [value]="ward.WardId">
+                    {{ ward.Name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="f['WardId'].errors && f['WardId'].errors['required']">
+                  <strong>Ward is required</strong> 
+                  </mat-error>
+              </mat-form-field>
+            </section>
+
+            <div class="col-2 formTitle">Profile Image :</div>
+            <section class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <ngx-mat-file-input #photo formControlName="ImageName" placeholder="Add Image"
+                  (change)="onAddImage($event)">
+                </ngx-mat-file-input>
+                <button mat-icon-button matSuffix *ngIf="!photo.empty" (click)="photo.clear($event); onRemoveImage()">
+                  <mat-icon matSuffix>clear</mat-icon>
+                </button>
+              </mat-form-field>
+            </section>
+
+            <div class="col-12">
+              <div class="example-button-width">
+                <button mat-raised-button type="button" style="background-color:#fa8b4b;"
+                  (click)="reloadPage()">Cancel</button>
+                <button mat-raised-button color="primary" style="margin-left: 10px;" type="submit">Save</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-container>
+  </mat-card>
+</ng-container>

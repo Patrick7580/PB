@@ -1,0 +1,322 @@
+<mat-toolbar class="example-header" style="color:white;">
+  <mat-toolbar-row>
+    <a class="d-flex align-items-center col-md-4 mb-2 mb-md-0 text-dark text-decoration-none hide-mob">
+      <div aria-label="Toggle sidenav" class="side-nav-button me-3 text-light" style="margin-top:0px ; cursor: pointer;"
+        (click)="drawer.toggle()">
+        <mat-icon style="color: rgb(0, 0, 0);" class="headerButton">view_module</mat-icon>
+      </div>
+    </a>
+
+    <span class="example-spacer">
+    </span>
+
+    <select class="custom-select" (change)="changelang($any($event.target).value)">
+      <option value="en" [selected]="lang == 'en'">En</option>
+      <option value="hi" [selected]="lang == 'hi'">Hi</option>
+    </select>
+
+    <button mat-icon-button class="example-icon" aria-hidden="false">
+      <mat-icon class="headerButton" [matBadge]="count" style="color: rgb(0, 0, 0);" routerLink="notification-list">
+        notifications_none</mat-icon>
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon class="headerButton" style="color: rgb(250, 155, 12);" aria-hidden="false">person_outline</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon style="margin-top:0px ;color:#20449c">settings</mat-icon>
+        <span style="font-weight: 500; margin-right: 20px;">Settings</span>
+      </button>
+      <button mat-menu-item routerLink="/logout">
+        <mat-icon style="margin-top:0px ;color:#20449c">keyboard_return</mat-icon>
+        <span style="font-weight: 500; margin-right: 20px;">Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="side" opened role="navigation" class="example-sidenav">
+    <mat-nav-list class="sidelist">
+      <a mat-list-item>
+        <img class="hide-mob" style="margin-left: 70px; justify-content: center;"
+          src="./assets/images/Panchayat-bhavan.png" alt="" width="100" height="35">
+      </a>
+      <div class="topnav">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            [ngClass]="{ 'high': panelOpenState === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon data-toggle="minimize">map</mat-icon>
+                {{ 'REPORTING' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">card_membership</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="region-report">
+                {{ 'Region Wise Report' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">credit_card</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="status-wise-report">
+                {{ 'Status Wise Report' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false"
+            [ngClass]="{ 'high': panelOpenState1 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>person</mat-icon>
+                {{ 'USER' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">streetview</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="user-list">
+                {{ 'User List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">person_add</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-user">
+                {{ 'Add User' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false"
+            [ngClass]="{ 'high': panelOpenState2 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon data-toggle="minimize">bookmark</mat-icon>
+                {{ 'CATEGORY' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">local_library</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="category-list">
+                {{ 'Category List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">local_mall</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-category">
+                {{ 'Add Category' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState3 = true" (closed)="panelOpenState3 = false"
+            [ngClass]="{ 'high': panelOpenState3 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>category</mat-icon>
+                {{ 'SUB-CATEGORY' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">category</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="sub-category-list">
+                {{ 'Sub-Category List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">switch_camera</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-subCategory">
+                {{ 'Add Sub-Category' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState4 = true" (closed)="panelOpenState4 = false"
+            [ngClass]="{ 'high': panelOpenState4 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>location_city</mat-icon>
+                {{ 'DISTRICT' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">receipt</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="district-list">
+                {{ 'District List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">markunread_mailbox</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-district">
+                {{ 'Add District' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState5 = true" (closed)="panelOpenState5 = false"
+            [ngClass]="{ 'high': panelOpenState5 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon> store_mall_directory</mat-icon>
+                {{ 'BLOCK' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">next_week</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="block-list">
+                {{ 'Block List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">next_week</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-block">
+                {{ 'Add Block' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState6 = true" (closed)="panelOpenState6 = false"
+            [ngClass]="{ 'high': panelOpenState6 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>domain</mat-icon>
+                {{ 'PANCHAYAT' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">move_to_inbox</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="panchayat-list">
+                {{ 'Panchayat List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon data-toggle="minimize" style="margin-left: 15px;">bubble_chart</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-panchayat">
+                {{ 'Add Panchayat' | translate }}
+              </div>
+            </div>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState7 = true" (closed)="panelOpenState7 = false"
+            [ngClass]="{ 'high': panelOpenState7 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>nature_people</mat-icon>
+                {{ 'WARD' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon style="margin-left: 15px;">get_app</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="ward-list">
+                {{ 'Ward List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon style="margin-left: 15px;">assignment_returned</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-ward">
+                {{ 'Add Ward' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState8 = true" (closed)="panelOpenState8 = false"
+            [ngClass]="{ 'high': panelOpenState8 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon> place</mat-icon>
+                {{ 'COMPLAINT' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <div class="compItems">
+              <h4 routerLink="complaint-list">
+                <mat-icon>filter_none</mat-icon>
+                {{ 'Complaint List' | translate }}
+              </h4>
+            </div> -->
+            <div class="row">
+              <div class="col-3">
+                <mat-icon style="margin-left: 15px;"> place</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="complaint-list">
+                {{ 'COMPLAINT LIST' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState9 = true" (closed)="panelOpenState9 = false"
+            [ngClass]="{ 'high': panelOpenState9 === true}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon> rate_review</mat-icon>
+                {{ 'EVENT' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-3">
+                <mat-icon style="margin-left: 15px;">event_note</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="event-list">
+                {{ 'Event List' | translate }}
+              </div>
+            </div>
+            <div class="row" style="padding-top: 5px;">
+              <div class="col-3">
+                <mat-icon style="margin-left: 15px;">event_available</mat-icon>
+              </div>
+              <div class="col-9 titleList" routerLink="add-event">
+                {{ 'Add Event' | translate }}
+              </div>
+            </div>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="example-sidenav-content">
+    <ng-container>
+      <router-outlet></router-outlet>
+      <mat-toolbar class="example-footer justify-content-center ">
+        <p style="margin-bottom: 0px;"></p>
+        <span class="example-spacer"></span>
+        <p style="color: #20449c; margin-bottom: 0px;"> Copyright © 2021. Panchayat Bhawan. All rights reserved. Created
+          by infobyd</p>
+      </mat-toolbar>
+    </ng-container>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
