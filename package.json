@@ -6,10 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "heroku-postbuild": "ng build"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "~14.1.0",
+    "@angular/compiler-cli": "^14.1.0",
     "@angular/animations": "^14.1.0",
     "@angular/cdk": "^14.1.1",
     "@angular/common": "^14.1.0",
