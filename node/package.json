@@ -13,14 +13,16 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
+    "path": "^0.12.7",
     "sequelize": "^6.3.3",
     "tedious": "^8.3.0",
     "yarn": "^1.22.19",
     "yup": "^0.29.0"
   },
   "devDependencies": {
+    "enhanced-resolve": "^3.3.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
