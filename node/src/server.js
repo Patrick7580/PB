@@ -6,15 +6,17 @@ var cors = require('cors')
 const app           = express();
 const path = require('path');
 
-app.use(express.static(__dirname + `/dist/my-app`));
+app.use(
+  express.static(path.join(__dirname, '../my-app/dist/my-app'), {
+      maxAge: '1y',
+  })
+);
 
-// app.get('/*', function(req,res) {
-    
-// res.sendFile(path.join(__dirname +'/dist/my-app/index.html'));
-// });
-
-app.route('/*', function(req,res) {
-  res.redirect(__dirname + '/dist/index.html')
+// Angular app
+app.get('*', (req, res) => {
+  res.sendFile(
+      path.join(__dirname, '../my-app/dist/my-app/index.html')
+  );
 });
 
 app.use(cors());
