@@ -6,15 +6,19 @@ var cors = require('cors')
 const app           = express();
 const path = require('path');
 
-app.use(express.static(__dirname + '/dist/my-app'));
+app.use(express.static(__dirname + `/dist/my-app`));
 
-app.get('/*', function(req,res) {
+// app.get('/*', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/dist/my-app/index.html'));
+// res.sendFile(path.join(__dirname +'/dist/my-app/index.html'));
+// });
+
+app.route('/*', function(req,res) {
+  res.redirect(__dirname + '/dist/index.html')
 });
 
-
 app.use(cors());
+
 app.options('*', cors());
 
 app.use(function (req, res, next) {
